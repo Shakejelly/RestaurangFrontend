@@ -23,7 +23,8 @@ namespace RestaurangFrontend.Controllers
 
             var menuList = JsonConvert.DeserializeObject<List<Menu>>(json);
 
-            return View();
+            return View(menuList);
         }
+        
     }
 }
