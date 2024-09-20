@@ -15,7 +15,7 @@ namespace RestaurangFrontend.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            ViewData["Title"] = "The Menu";
+            ViewData["Title"] = "Menu";
 
             var respons = await _httpClient.GetAsync($"{baseUrl}api/Menu/getAllDishes");
 

@@ -28,3 +28,4 @@ app.Run();
 
 //saker jag ska ta reda på
 //custom routes
+//decrypt - för att hasha grejjer
