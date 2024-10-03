@@ -19,11 +19,13 @@ namespace RestaurangFrontend.Controllers
         {
             return View();
         }
+        
         public IActionResult Create()
         {
             ViewData["Title"] = "Booking";
             return View();
         }
+        [HttpPost]
         public async Task<IActionResult> CreateAsync(Customer create) 
         {
             var checkCustomerResponse = await _httpClient.GetAsync($"{baseUri}api/Customer/GetByPhoneNumber?phoneNumber={create.PhoneNumber}");
@@ -34,7 +36,7 @@ namespace RestaurangFrontend.Controllers
 
                 if (existingCustomer != null)
                 {
-                    return RedirectToAction("Booking", "Booking", new { customerId = existingCustomer.CustomerId });
+                    return RedirectToAction("Create", "Booking", new { customerId = existingCustomer.CustomerId });
                 }
             }
         
@@ -48,7 +50,7 @@ namespace RestaurangFrontend.Controllers
             {
                 var newCustomer = JsonConvert.DeserializeObject<Customer>(await customerResponse.Content.ReadAsStringAsync());
 
-                return RedirectToAction("Booking", "Booking", new { customerId = newCustomer.CustomerId });
+                return RedirectToAction("Create", "Booking", new { customerId = newCustomer.CustomerId });
             }
             ModelState.AddModelError(string.Empty, "Unable to create customer. Please try again.");
             return View(create);

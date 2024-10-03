@@ -1,0 +1,16 @@
+﻿@model RestaurangFrontend.Models.Booking
+
+<h1>Hi @ViewBag.CustomerName!</h1>
+<h2>Create a Booking</h2>
+
+<form asp-action="CreateAsync" method="post">
+    <div>
+        <label for="TableAmount">Seating Amount:</label>
+        <input type="number" name="TableAmount" required />
+    </div>
+    <div>
+        <label for="TimeToArrive">Time to Arrive:</label>
+        <input type="datetime-local" name="TimeToArrive" required />
+    </div>
+    <button type="submit">Book Now</button>
+</form>

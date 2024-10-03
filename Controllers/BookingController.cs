@@ -20,12 +20,14 @@ namespace RestaurangFrontend.Controllers
         {
             return View();
         }
-        public IActionResult Create(int customerId)
+        public IActionResult Create(int customerId, string customerName)
         {
             ViewData["Title"] = "Booking";
 
+            ViewBag.CustomerName = customerName;
             Booking createBooking = new Booking();
             createBooking.CustomerId = customerId;
+            
             return View(createBooking);
         }
         [HttpPost]
@@ -33,6 +35,13 @@ namespace RestaurangFrontend.Controllers
         {
             if (!ModelState.IsValid)
             {
+                return View(create);
+            }
+
+            var availableTable = await GetAvailableTable(create.TableAmount, create.TimeToArrive);
+            if (availableTable == null)
+            {
+                ModelState.AddModelError("", "No available table found");
                 return View(create);
             }
             var json = JsonConvert.SerializeObject(create);
@@ -43,6 +52,19 @@ namespace RestaurangFrontend.Controllers
 
             return RedirectToAction("ThankYou");
 
+        }
+        private async Task<Table?> GetAvailableTable(int seatingsRequired, DateTime bookingTime)
+        {
+            var response = await _httpClient.GetAsync($"{baseUrl}Table/GetAvailableTable?seatingsRequired={seatingsRequired}&bookingTime={bookingTime}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var availableTable = JsonConvert.DeserializeObject<Table>(jsonResponse);
+                return availableTable;
+            }
+
+            return null; // Handle the error as needed
         }
         public IActionResult ThankYou()
         {

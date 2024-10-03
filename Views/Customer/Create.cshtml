@@ -1,15 +1,14 @@
-﻿
-@model RestaurangFrontend.Models.Customer
+﻿@model RestaurangFrontend.Models.Customer
 
 <h1>Create a Customer</h1>
 
-<form asp-action="CreateAsync" method="post">
+<form asp-action="Create" method="post">
     <div>
-        <label for="ReservationName">Name:</label>
+        <label asp-for="CustomerName">Name:</label>
         <input type="text" name="ReservationName" required />
     </div>
     <div>
-        <label for="PhoneNumber">Phone Number:</label>
+        <label asp-for="PhoneNumber">Phone Number:</label>
         <input type="tel" name="PhoneNumber" required />
     </div>
     <button type="submit">Register</button>

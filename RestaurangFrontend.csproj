@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Account\Login.cshtml" />
+    <Content Remove="Views\Booking\CreateAsync.cshtml" />
+    <Content Remove="Views\Customer\CreateAsync.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
