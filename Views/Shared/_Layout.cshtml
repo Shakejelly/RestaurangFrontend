@@ -37,7 +37,7 @@
                             <a class="nav-link text-dark" asp-controller="Menus" asp-action="Index">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="http://localhost:5173/">Reservation</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="ReactBooking">Reservation</a>
                         </li>
 
                         @if (Context.Session.GetString("IsAdmin") == "true")
