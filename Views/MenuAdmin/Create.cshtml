@@ -1,0 +1,25 @@
+﻿@model RestaurangFrontend.Models.Menu
+
+@{
+    ViewData["Title"] = "Lägg till ny rätt";
+}
+
+<div class="container mt-5">
+    <h2>Lägg till ny rätt</h2>
+
+    <form method="post">
+        <div class="form-group">
+            <label>Namn</label>
+            <input asp-for="DishName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Beskrivning</label>
+            <input asp-for="Description" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Pris</label>
+            <input asp-for="DishPrice" class="form-control" type="number" step="0.01" />
+        </div>
+        <button type="submit" class="btn btn-success mt-3">Spara</button>
+    </form>
+</div>

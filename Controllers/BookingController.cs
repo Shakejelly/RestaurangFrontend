@@ -18,6 +18,12 @@ namespace RestaurangFrontend.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            string token = HttpContext.Session.GetString("JwtToken");
+            if (!string.IsNullOrEmpty(token))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            }
+
             var response = await _httpClient.GetAsync($"{baseUrl}api/Booking/getAllBookings");
 
             if (!response.IsSuccessStatusCode)
@@ -79,6 +85,12 @@ namespace RestaurangFrontend.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            string token = HttpContext.Session.GetString("JwtToken");
+            if (!string.IsNullOrEmpty(token))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            }
+
             var response = await _httpClient.GetAsync($"{baseUrl}api/Booking/booking/{id}");
 
             if (!response.IsSuccessStatusCode)
@@ -98,6 +110,12 @@ namespace RestaurangFrontend.Controllers
             var json = JsonConvert.SerializeObject(booking);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
+            string token = HttpContext.Session.GetString("JwtToken");
+            if (!string.IsNullOrEmpty(token))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            }
+
             var response = await _httpClient.PutAsync($"{baseUrl}api/Booking/updateBooking/{booking.BookingId}", content);
 
             if (!response.IsSuccessStatusCode)
@@ -111,6 +129,12 @@ namespace RestaurangFrontend.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
+            string token = HttpContext.Session.GetString("JwtToken");
+            if (!string.IsNullOrEmpty(token))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            }
+
             var response = await _httpClient.DeleteAsync($"{baseUrl}api/Booking/deleteBooking/{id}");
 
             if (!response.IsSuccessStatusCode)

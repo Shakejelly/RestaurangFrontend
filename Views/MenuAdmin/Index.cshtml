@@ -1,0 +1,56 @@
+﻿@model List<RestaurangFrontend.Models.Menu>
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+<div class="container mt-5">
+    <h2>Menyn (Admin)</h2>
+
+    <a href="@Url.Action("Create")" class="btn btn-success mb-3">Lägg till ny rätt</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Namn</th>
+                <th>Beskrivning</th>
+                <th>Pris</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dish in Model)
+            {
+                <tr>
+                    <td>@dish.Id</td>
+                    <td>@dish.DishName</td>
+                    <td>@dish.Description</td>
+                    <td>@dish.DishPrice.ToString("C")</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = dish.Id })" class="btn btn-warning btn-sm">Redigera</a>
+                        <form asp-action="Delete" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@dish.Id" />
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Är du säker på att du vill ta bort denna rätt?');">
+                                Ta bort
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

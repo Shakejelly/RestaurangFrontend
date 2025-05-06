@@ -1,7 +1,10 @@
-﻿namespace RestaurangFrontend.Models
+﻿using Newtonsoft.Json;
+
+namespace RestaurangFrontend.Models
 {
     public class Menu
     {
+        [JsonProperty("dishId")]
         public int Id { get; set; }
         public string DishName { get; set; }
         public string Description { get; set; }
