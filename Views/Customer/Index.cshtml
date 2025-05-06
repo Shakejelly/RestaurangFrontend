@@ -1,5 +1,15 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model RestaurangFrontend.Models.Customer
+
+<h1>Create a Customer</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label asp-for="CustomerName">Name:</label>
+        <input type="text" name="ReservationName" required />
+    </div>
+    <div>
+        <label asp-for="PhoneNumber">Phone Number:</label>
+        <input type="tel" name="PhoneNumber" required />
+    </div>
+    <button type="submit">Register</button>
+</form>

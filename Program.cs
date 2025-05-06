@@ -11,7 +11,7 @@ builder.Services.AddSession(option =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Logins";
+        options.LoginPath = "/Admin/Login";
     });
 builder.Services.AddAuthorization();
 
@@ -32,6 +32,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();

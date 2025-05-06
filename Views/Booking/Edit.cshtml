@@ -1,0 +1,30 @@
+﻿@model RestaurangFrontend.Models.Booking
+
+@{
+    ViewData["Title"] = "Edit Booking";
+}
+
+<div class="container mt-5">
+    <h2>Edit Booking</h2>
+
+    <form method="post">
+        <input type="hidden" asp-for="BookingId" />
+        <div class="form-group">
+            <label>Customer ID</label>
+            <input asp-for="CustomerId" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label>Table ID</label>
+            <input asp-for="TableId" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Table Amount</label>
+            <input asp-for="TableAmount" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Time to Arrive</label>
+            <input asp-for="TimeToArrive" type="datetime-local" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Save</button>
+    </form>
+</div>

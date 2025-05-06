@@ -1,12 +1,41 @@
-﻿@{
-    ViewData["Title"] = "Booking Management";
-}
+﻿@model List<RestaurangFrontend.Models.Booking>
 
-<h2>@ViewData["Title"]</h2>
+<div class="container mt-5">
+    <h2>Alla Bokningar</h2>
 
-<p>Welcome to the booking management page. You can create a new booking or view existing bookings.</p>
-
-<a asp-controller="Booking" asp-action="Create" class="btn btn-primary">Create New Booking</a>
-
-<h3>Existing Bookings</h3>
-
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Customer ID</th>
+                    <th>Table ID</th>
+                    <th>Table Amount</th>
+                    <th>Time to Arrive</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var b in Model)
+                {
+                    <tr>
+                        <td>@b.BookingId</td>
+                        <td>@b.CustomerId</td>
+                        <td>@b.TableId</td>
+                        <td>@b.TableAmount</td>
+                        <td>@b.TimeToArrive.ToString("g")</td>
+                        <td>
+                            <a class="btn btn-sm btn-warning" href="@Url.Action("Edit", new { id = b.BookingId })">Edit</a>
+                            <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", new { id = b.BookingId })">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

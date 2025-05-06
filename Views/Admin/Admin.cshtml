@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+<div class="container mt-5">
+    <h2>Admin Panel</h2>
+
+    <p>Välkommen, chef! Vad vill du göra idag?</p>
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="@Url.Action("Index", "Bookings")">Hantera Bokningar</a>
+        </li>
+        <li class="list-group-item">
+            <a href="@Url.Action("Index", "MenuAdmin")">Hantera Meny</a>
+        </li>
+        <li class="list-group-item">
+            <a href="@Url.Action("Logout", "Admin")"> Logga ut</a>
+        </li>
+    </ul>
+</div>

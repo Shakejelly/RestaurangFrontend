@@ -1,13 +1,25 @@
-﻿@model List<Menu>
+﻿@model IEnumerable<RestaurangFrontend.Models.Menu>
 
-    @foreach (var menu in Model)
-{
-    <div class="card" style="width:18rem">
-        <div class="card-body">
-            <h3 class="card-title">@menu.DishName</h3>
-            <h5 class="card-text">@menu.Description</h5>
-            <h5 class="card-price">@menu.DishPrice</h5>
-        </div>
+<div class="container mt-5">
+    <h2 class="mb-4">Our Full Menu</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <div class="row">
+        @foreach (var dish in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@dish.DishName</h5>
+                        <p class="card-text">@dish.Description</p>
+                        <p><strong>@dish.DishPrice.ToString("C")</strong></p>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-}
-
+</div>

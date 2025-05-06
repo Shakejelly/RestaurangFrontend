@@ -5,11 +5,13 @@
 <form asp-action="Create" method="post">
     <div>
         <label asp-for="CustomerName">Name:</label>
-        <input type="text" name="ReservationName" required />
+        <input asp-for="CustomerName" required />
+        <span asp-validation-for="CustomerName" class="text-danger"></span>
     </div>
     <div>
         <label asp-for="PhoneNumber">Phone Number:</label>
-        <input type="tel" name="PhoneNumber" required />
+        <input asp-for="PhoneNumber" required />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
     </div>
     <button type="submit">Register</button>
 </form>
