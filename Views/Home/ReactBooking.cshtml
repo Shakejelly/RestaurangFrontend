@@ -1,8 +1,27 @@
-﻿@{
-    ViewData["Title"] = "React Bokning";
+﻿@using Microsoft.AspNetCore.Hosting
+@inject IWebHostEnvironment env
+@{
+    ViewData["Title"] = "Boka Bord";
+    // Kör React lokalt i dev, annars GitHub Pages (eller byt till din riktiga prod-URL)
+    var reactDev = "http://localhost:5173";
+    var reactProd = "https://shakejelly.github.io/RestaurantReact"; // byt till din URL om annan
+    var src = env.IsDevelopment() ? reactDev : reactProd;
 }
 
-<h2>Boka Bord 🍝</h2>
-<iframe src="https://shakejelly.github.io/RestaurantReact/"
-        style="width:100%; height:800px; border:none;">
-</iframe>
+<div class="container my-4">
+    <h2 class="mb-3">Boka Bord</h2>
+
+    <div class="ratio ratio-16x9" style="min-height:70vh;">
+        <iframe src="@src"
+                title="Restaurant React Booking"
+                style="width:100%; height:100%; border:0; display:block;"
+                loading="lazy"
+                allow="clipboard-read; clipboard-write"></iframe>
+    </div>
+
+    <noscript>
+        <div class="alert alert-warning mt-3">
+            Din webbläsare blockerar JavaScript – aktivera det för att kunna boka bord.
+        </div>
+    </noscript>
+</div>

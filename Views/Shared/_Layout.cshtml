@@ -37,7 +37,7 @@
                             <a class="nav-link text-dark" asp-controller="Menus" asp-action="Index">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="ReactBooking">Reservation</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Reservation">Reservation</a>
                         </li>
 
                         @if (Context.Session.GetString("IsAdmin") == "true")
@@ -46,7 +46,7 @@
                                 <a class="nav-link text-danger" asp-controller="MenuAdmin" asp-action="Index">Admin: Meny</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-danger" asp-controller="Booking" asp-action="Index">Admin: Bokningar</a>
+                                <a class="nav-link" asp-controller="Home" asp-action="Reservation">Reservation</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Admin" asp-action="Logout">Logga ut</a>

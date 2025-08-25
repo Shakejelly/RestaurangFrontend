@@ -17,14 +17,26 @@ namespace RestaurangFrontend.Controllers
         {
             ViewData["Title"] = "Menu";
 
-            var respons = await _httpClient.GetAsync($"{baseUrl}api/Menu/getAllDishes");
+            try
+            {
+                var respons = await _httpClient.GetAsync($"{baseUrl}api/Menu/getAllDishes");
+                if (!respons.IsSuccessStatusCode)
+                {
+                    ViewBag.Error = "Kunde inte hämta menyn just nu.";
+                    return View(Enumerable.Empty<Menu>());
+                }
 
-            var json = await respons.Content.ReadAsStringAsync();
-
-            var menuList = JsonConvert.DeserializeObject<List<Menu>>(json);
-
-            return View(menuList);
+                var json = await respons.Content.ReadAsStringAsync();
+                var menuList = JsonConvert.DeserializeObject<List<Menu>>(json) ?? new List<Menu>();
+                return View(menuList);
+            }
+            catch
+            {
+                ViewBag.Error = "Något gick snett när menyn skulle hämtas.";
+                return View(Enumerable.Empty<Menu>());
+            }
         }
-        
+
+
     }
 }

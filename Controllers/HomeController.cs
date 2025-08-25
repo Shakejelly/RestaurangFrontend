@@ -30,5 +30,10 @@ namespace RestaurangFrontend.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult Reservation()
+        {
+            // Ladda vyn vi skapade nyss
+            return View("ReactBooking");
+        }
     }
 }
